@@ -5,7 +5,7 @@ import aiohttp
 from typing import List, Dict, Optional, Any
 from datetime import datetime
 import logging
-from ddgs import DDGS
+from duckduckgo_search import DDGS
 import config
 
 logger = logging.getLogger(__name__)
