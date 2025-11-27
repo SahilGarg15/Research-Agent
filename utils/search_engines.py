@@ -202,7 +202,7 @@ class WikipediaSearchEngine:
     """Wikipedia API - Free, unlimited."""
     
     def __init__(self):
-        self.wiki = wikipedia.Wikipedia(
+        self.wiki = wikipediaapi.Wikipedia(
             user_agent='AutoResearchAgent/2.0 (Educational)',
             language='en'
         )
