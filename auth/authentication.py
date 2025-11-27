@@ -7,6 +7,8 @@ import sqlite3
 import hashlib
 import secrets
 import re
+import os
+import tempfile
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 import bcrypt
@@ -25,10 +27,18 @@ class UserDatabase:
     """SQLite database for user management."""
     
     def __init__(self, db_path: str = "data/users.db"):
+        # For Streamlit Cloud, ensure we use a writable directory
+        if not os.path.isabs(db_path):
+            # Use current directory or temp directory for relative paths
+            if os.path.exists('.streamlit'):
+                # Running on Streamlit Cloud
+                db_path = os.path.join(tempfile.gettempdir(), os.path.basename(db_path))
+            else:
+                # Local development
+                db_dir = os.path.dirname(db_path) if os.path.dirname(db_path) else '.'
+                os.makedirs(db_dir, exist_ok=True)
+        
         self.db_path = db_path
-        # Ensure directory exists
-        import os
-        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self._init_database()
     
     def _init_database(self):
@@ -248,10 +258,17 @@ class UsageTracker:
     """Track user research usage and enforce limits."""
     
     def __init__(self, db_path: str = "data/users.db"):
+        # For Streamlit Cloud, ensure we use a writable directory
+        if not os.path.isabs(db_path):
+            if os.path.exists('.streamlit'):
+                # Running on Streamlit Cloud
+                db_path = os.path.join(tempfile.gettempdir(), os.path.basename(db_path))
+            else:
+                # Local development
+                db_dir = os.path.dirname(db_path) if os.path.dirname(db_path) else '.'
+                os.makedirs(db_dir, exist_ok=True)
+        
         self.db_path = db_path
-        # Ensure directory exists
-        import os
-        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
     
     def get_usage_today(self, user_id: int) -> int:
         """Get user's search count for today."""
