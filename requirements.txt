@@ -39,3 +39,4 @@ tqdm>=4.66.0
 
 bcrypt==4.2.1
 PyJWT==2.9.0
+wikipedia-api==0.7.0
