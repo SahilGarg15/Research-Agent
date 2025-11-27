@@ -26,6 +26,9 @@ class UserDatabase:
     
     def __init__(self, db_path: str = "data/users.db"):
         self.db_path = db_path
+        # Ensure directory exists
+        import os
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self._init_database()
     
     def _init_database(self):
@@ -246,6 +249,9 @@ class UsageTracker:
     
     def __init__(self, db_path: str = "data/users.db"):
         self.db_path = db_path
+        # Ensure directory exists
+        import os
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
     
     def get_usage_today(self, user_id: int) -> int:
         """Get user's search count for today."""
