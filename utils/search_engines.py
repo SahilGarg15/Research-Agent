@@ -11,6 +11,7 @@ from typing import List, Dict, Optional, Any
 from datetime import datetime
 import logging
 from duckduckgo_search import DDGS
+import wikipedia
 import wikipediaapi
 
 logger = logging.getLogger(__name__)
@@ -201,7 +202,7 @@ class WikipediaSearchEngine:
     """Wikipedia API - Free, unlimited."""
     
     def __init__(self):
-        self.wiki = wikipediaapi.Wikipedia(
+        self.wiki = wikipedia.Wikipedia(
             user_agent='AutoResearchAgent/2.0 (Educational)',
             language='en'
         )

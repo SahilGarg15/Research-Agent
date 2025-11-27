@@ -37,7 +37,14 @@ colorama>=0.4.6
 rich>=13.7.0
 tqdm>=4.66.0
 
+# Authentication & APIs
 bcrypt==4.2.1
 PyJWT==2.9.0
-wikipedia-api==0.7.0
-wikipedia
+wikipedia==1.4.0
+Wikipedia-API==0.8.1
+
+# Visualization
+matplotlib>=3.8.0
+
+# Web Framework
+streamlit>=1.51.0
